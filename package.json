@@ -1,5 +1,5 @@
 {
-  "name": "myportfolio",
+  "name": "Travel-Agency",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -11,15 +11,16 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.6.1",
-    "@tailwindcss/vite": "^4.0.14",
-    "axios": "^1.8.3",
-    "framer-motion": "^12.5.0",
+    "@tailwindcss/vite": "^4.0.12",
+    "framer-motion": "^12.4.11",
     "lucide-react": "^0.479.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-icons": "^5.5.0",
     "react-redux": "^9.2.0",
-    "tailwindcss": "^4.0.14"
+    "react-router-dom": "^7.3.0",
+    "swiper": "^11.2.5",
+    "tailwindcss": "^4.0.12"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",

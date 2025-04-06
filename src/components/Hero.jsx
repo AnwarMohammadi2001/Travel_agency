@@ -1,115 +1,170 @@
-import React, { useEffect, useState } from "react";
-import { letters, professionTexts, aboutText, socialIcons } from "./data";
-import { LuBookOpen } from "react-icons/lu";
-import Navbar from "./Navbar";
-import NavigationCircle from "./NavigationCircle";
+import React, { useEffect, useRef, useState } from "react";
+import "../utils/Carousel.css";
+import img1 from "../assets/image/img1.jpg";
+import img2 from "../assets/image/img2.jpg";
+import img3 from "../assets/image/img3.jpg";
+import img4 from "../assets/image/img4.jpg";
+import her5 from '../assets/image/img5.jpg'
+import her2 from '../assets/hero2.jpg'
+import hero3 from '../assets/hero3.jpg'
 
 const Hero = () => {
-  const [hoverLetter, setHoverLetter] = useState(null);
-  const [currentText, setCurrentText] = useState(professionTexts[0]);
-  const [isRotating, setIsRotating] = useState(false);
-  const [isTextvisible, setTextvisible] = useState(false);
-  const [roadImageOpacity, setRoadImageOpacity] = useState(0.5);
+  const carouselRef = useRef(null);
+  const nextRef = useRef(null);
+  const prevRef = useRef(null);
+  const [activeIndex, setActiveIndex] = useState(0); // Track active slide index
+
+  const slides = [
+    {
+      id: 1,
+      image: her5,
+      author: "LUNDEV",
+      title: "DESIGN SLIDER",
+      topic: "ANIMAL",
+      description:
+        "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut sequi, rem magnam nesciunt minima placeat, itaque eum neque officiis unde, eaque optio ratione aliquid assumenda facere ab et quasi ducimus aut doloribus non numquam. Explicabo, laboriosam nisi reprehenderit tempora at laborum natus unde. Ut, exercitationem eum aperiam illo illum laudantium?",
+    },
+    {
+      id: 2,
+      image: img2,
+      author: "LUNDEV",
+      title: "DESIGN SLIDER",
+      topic: "ANIMAL",
+      description:
+        "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut sequi, rem magnam nesciunt minima placeat, itaque eum neque officiis unde, eaque optio ratione aliquid assumenda facere ab et quasi ducimus aut doloribus non numquam. Explicabo, laboriosam nisi reprehenderit tempora at laborum natus unde. Ut, exercitationem eum aperiam illo illum laudantium?",
+    },
+    {
+      id: 3,
+      image: img3,
+      author: "LUNDEV",
+      title: "DESIGN SLIDER",
+      topic: "ANIMAL",
+      description:
+        "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut sequi, rem magnam nesciunt minima placeat, itaque eum neque officiis unde, eaque optio ratione aliquid assumenda facere ab et quasi ducimus aut doloribus non numquam. Explicabo, laboriosam nisi reprehenderit tempora at laborum natus unde. Ut, exercitationem eum aperiam illo illum laudantium?",
+    },
+    {
+      id: 4,
+      image: img4,
+      author: "LUNDEV",
+      title: "DESIGN SLIDER",
+      topic: "ANIMAL",
+      description:
+        "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut sequi, rem magnam nesciunt minima placeat, itaque eum neque officiis unde, eaque optio ratione aliquid assumenda facere ab et quasi ducimus aut doloribus non numquam. Explicabo, laboriosam nisi reprehenderit tempora at laborum natus unde. Ut, exercitationem eum aperiam illo illum laudantium?",
+    },
+  ];
 
   useEffect(() => {
-    let currentIndex = 0; 
+    const carouselDom = carouselRef.current;
+    const nextDom = nextRef.current;
+    const prevDom = prevRef.current;
+    const SliderDom = carouselDom.querySelector(".carousel .list");
+    const thumbnailBorderDom = carouselDom.querySelector(
+      ".carousel .thumbnail"
+    );
+    const thumbnailItemsDom = thumbnailBorderDom.querySelectorAll(".item");
+    const timeRunning = 3000;
+    const timeAutoNext = 7000;
+    let runTimeOut;
+    let runNextAuto;
 
-    const interval = setInterval(() => {
-      setIsRotating(true);
-      setTimeout(() => {
-        currentIndex = (currentIndex + 1) % professionTexts.length;
-        setCurrentText(professionTexts[currentIndex]);
-        setIsRotating(false);
-      }, 2000); 
-    }, 4000); 
+    const showSlider = (type) => {
+      const SliderItemsDom = SliderDom.querySelectorAll(
+        ".carousel .list .item"
+      );
+      const thumbnailItemsDom = thumbnailBorderDom.querySelectorAll(".item");
 
-    return () => clearInterval(interval); 
-  }, []);
+      if (type === "next") {
+        setActiveIndex((prevIndex) => (prevIndex + 1) % slides.length);
+        SliderDom.appendChild(SliderItemsDom[0]);
+        thumbnailBorderDom.appendChild(thumbnailItemsDom[0]);
+        carouselDom.classList.add("next");
+      } else {
+        setActiveIndex(
+          (prevIndex) => (prevIndex - 1 + slides.length) % slides.length
+        );
+        SliderDom.prepend(SliderItemsDom[SliderItemsDom.length - 1]);
+        thumbnailBorderDom.prepend(
+          thumbnailItemsDom[thumbnailItemsDom.length - 1]
+        );
+        carouselDom.classList.add("prev");
+      }
+
+      clearTimeout(runTimeOut);
+      runTimeOut = setTimeout(() => {
+        carouselDom.classList.remove("next");
+        carouselDom.classList.remove("prev");
+      }, timeRunning);
+
+      clearTimeout(runNextAuto);
+      runNextAuto = setTimeout(() => {
+        nextDom.click();
+      }, timeAutoNext);
+    };
+
+    nextDom.onclick = () => showSlider("next");
+    prevDom.onclick = () => showSlider("prev");
+
+    runNextAuto = setTimeout(() => {
+      nextDom.click();
+    }, timeAutoNext);
+
+    return () => {
+      clearTimeout(runTimeOut);
+      clearTimeout(runNextAuto);
+    };
+  }, [slides.length]);
+
+  // Handle thumbnail click
+  const handleThumbnailClick = (index) => {
+    setActiveIndex(index);
+  };
 
   return (
-    <div
-      id="home"
-      className="w-full h-screen flex flex-col justify-center items-center"
-    >
-      <Navbar />
-      <div className="flex flex-col md:items-center items-start xl:gap-y-10 gap-y-3 xl:mb-0 md:mb-20 mb-0 ">
-        <h1 className="flex flex-col xl:space-y-8  text-red-600 dark:text-amber-500 md:space-y-4 space-y-2 xl:text-6xl md:text-4xl text-3xl md:font-normal font-bold">
-          <span className="flex mx-auto md:mx-0">
-            {letters.map((letter, index) => (
-              <span
-                key={index}
-                className="inline-block md:w-38 w-32 xl:-mr-20 -mr-24 relative"
-                onMouseEnter={() => setHoverLetter(index)}
-                onMouseLeave={() => setHoverLetter(null)}
-              >
-                {letter.char}
-                <img
-                  src={letter.img}
-                  alt={`Hover image ${index + 1}`}
-                  className={`
-                  xl:h-36 h-24   absolute bottom-full -translate-x-1/2 ${
-                    letter.rotate
-                  } ${hoverLetter === index ? "visible" : "invisible"} 
-                `}
-                />
-              </span>
-            ))}
-          </span>
-          <span className="xl:text-6xl md:text-4xl text-2xl tracking-wider xl:py-4 py-2 overflow-hidden text-center">
-            I'm{" "}
-            <span
-              className={`inline-block xl:w-[380px] md:w-[240px] w-[160px] lg:ml-6 ml-2 font-extrabold transform origin-left transition-transform duration-200 ${
-                isRotating ? "md:rotate-[100deg]" : "rotate-0"
-              }`}
-            >
-              {currentText}
-            </span>
-            Web Developer
-          </span>
-        </h1>
-        <button
-          className="xl:w-[400px] md:w-[300px] w-[270px] bg-gray-200 mx-auto  md:py-1 py-0.5 md:px-4 px-2 xl:text-2xl md:text-xl text-base text-gray-900 tracking-widest rounded-r-4xl flex justify-between items-center md:mr-auto md:mx-0 ms-auto cursor-pointer"
-          onClick={() => setTextvisible(!isTextvisible)}
-          onMouseEnter={() => setRoadImageOpacity(0.8)}
-          onMouseLeave={() => setRoadImageOpacity(0.5)}
-        >
-          {isTextvisible ? "Hide My Story" : "Read My Story"}{" "}
-          <LuBookOpen className="" size={20} />
-        </button>
-        <div className="flex md:gap-12 gap-3  mr-auto md:relative absolute md:left-auto top-24 left-4 md:top-auto flex-col md:flex-row">
-          {socialIcons.map((item, index) => (
-            <a
-              key={index}
-              href={item.href}
-              className="xl:text-3xl md:text-2xl text-red-600 dark:text-amber-500 dark:hover:text-white hover:text-gray-900 transition-colors duration-300"
-            >
-              {item.icon}
-            </a>
-          ))}
-        </div>
-        <div className="lg:w-[600px] md:w-[500px] w-[350px] absolute -z-10 left-1/2 -translate-x-1/2">
-          <img
-            src="images/road.png"
-            alt="Road image"
-            className="w-full mx-auto transition-opacity duration-300"
-            style={{ opacity: roadImageOpacity }}
-          />
-          <span className="xl:text-xs md:text-[10px] text-[8px] font-bold tracking-wide text-red-600 dark:text-amber-500 absolute -top-5 xl:right-24 lg:right-28 md:right-16 right-10 rotate-[3.6deg] animate-bounce">
-            Looking for new challenges
-          </span>
+    <div ref={carouselRef} className="carousel">
+      <div className="list">
+        {slides.map((item, index) => (
           <div
-  className={`xl:h-[150px] h-[100px] px-3 xl:text-lg md:text-base text-xs font-light text-gray-700 dark:text-gray-200 text-justify tracking-wide overflow-y-auto origin-top custom-scrollbar ${
-    isTextvisible ? "max-h-[500px]" : "max-h-0"
-  } transition-all duration-300 ease-in-out`}
-  aria-hidden={!isTextvisible}
->
-  <p className="xl:py-3 py-1 px-1 [&::first-letter]:text-[30px] [&::first-letter]:ml-5 [&::first-letter]:text-red-500">
-    {aboutText}
-  </p>
-</div>
-        </div>
+            key={item.id}
+            className={`item ${index === activeIndex ? "active" : ""}`}
+          >
+            <img src={item.image} alt={item.title} />
+            <div className="content">
+              <div className="author">{item.author}</div>
+              <div className="title">{item.title}</div>
+              <div className="topic">{item.topic}</div>
+              <div className="des">{item.description}</div>
+            </div>
+          </div>
+        ))}
       </div>
-      <NavigationCircle section={"home"} />
+
+      <div className="thumbnail">
+        {slides.map((items, index) => (
+          <div
+            key={items.id}
+            className={`item ${index === activeIndex ? "active" : ""}`}
+          >
+            <img src={items.image} alt={items.title} />
+            <div className="content">
+              <div className="title">{items.title}</div>
+              <div className="description">
+                {items.description.slice(0, 30)}...
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className="arrows">
+        <button ref={prevRef} id="prev">
+          &#9664;
+        </button>
+        <button ref={nextRef} id="next">
+          &#9654;
+        </button>
+      </div>
+
+      <div className="time"></div>
     </div>
   );
 };
