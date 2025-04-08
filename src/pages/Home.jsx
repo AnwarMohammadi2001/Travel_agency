@@ -21,9 +21,9 @@ const Home = () => {
           <Navbar />
         </div>
       </header>
-      <main className="mt-12">
+      <main className="">
         <Hero />
-        {/* <About />
+        <About />
         <Newsletter />
         <WhyChooseUs />
         <Menus />
@@ -33,7 +33,7 @@ const Home = () => {
         <BookTable />
         <Gallary />
         <Contact />
-        <Footer /> */}
+        <Footer />
       </main>
     </div>
   );

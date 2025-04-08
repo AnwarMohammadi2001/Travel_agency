@@ -1,18 +1,21 @@
 import React, { useEffect, useRef, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import "../utils/Carousel.css";
 import img1 from "../assets/image/img1.jpg";
 import img2 from "../assets/image/img2.jpg";
 import img3 from "../assets/image/img3.jpg";
 import img4 from "../assets/image/img4.jpg";
-import her5 from '../assets/image/img5.jpg'
-import her2 from '../assets/hero2.jpg'
-import hero3 from '../assets/hero3.jpg'
+import her5 from "../assets/image/img5.jpg";
+
+import { MdKeyboardArrowRight } from "react-icons/md";
+import { MdKeyboardArrowLeft } from "react-icons/md";
 
 const Hero = () => {
   const carouselRef = useRef(null);
   const nextRef = useRef(null);
   const prevRef = useRef(null);
-  const [activeIndex, setActiveIndex] = useState(0); // Track active slide index
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [progress, setProgress] = useState(0);
 
   const slides = [
     {
@@ -22,7 +25,7 @@ const Hero = () => {
       title: "DESIGN SLIDER",
       topic: "ANIMAL",
       description:
-        "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut sequi, rem magnam nesciunt minima placeat, itaque eum neque officiis unde, eaque optio ratione aliquid assumenda facere ab et quasi ducimus aut doloribus non numquam. Explicabo, laboriosam nisi reprehenderit tempora at laborum natus unde. Ut, exercitationem eum aperiam illo illum laudantium?",
+        "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut sequi, rem magnam nesciunt minima placeat...",
     },
     {
       id: 2,
@@ -31,16 +34,16 @@ const Hero = () => {
       title: "DESIGN SLIDER",
       topic: "ANIMAL",
       description:
-        "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut sequi, rem magnam nesciunt minima placeat, itaque eum neque officiis unde, eaque optio ratione aliquid assumenda facere ab et quasi ducimus aut doloribus non numquam. Explicabo, laboriosam nisi reprehenderit tempora at laborum natus unde. Ut, exercitationem eum aperiam illo illum laudantium?",
+        "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut sequi, rem magnam nesciunt minima placeat...",
     },
     {
       id: 3,
       image: img3,
-      author: "LUNDEV",
+      author: "LUNDEVvvvvv",
       title: "DESIGN SLIDER",
       topic: "ANIMAL",
       description:
-        "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut sequi, rem magnam nesciunt minima placeat, itaque eum neque officiis unde, eaque optio ratione aliquid assumenda facere ab et quasi ducimus aut doloribus non numquam. Explicabo, laboriosam nisi reprehenderit tempora at laborum natus unde. Ut, exercitationem eum aperiam illo illum laudantium?",
+        "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut sequi, rem magnam nesciunt minima placeat...",
     },
     {
       id: 4,
@@ -49,7 +52,7 @@ const Hero = () => {
       title: "DESIGN SLIDER",
       topic: "ANIMAL",
       description:
-        "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut sequi, rem magnam nesciunt minima placeat, itaque eum neque officiis unde, eaque optio ratione aliquid assumenda facere ab et quasi ducimus aut doloribus non numquam. Explicabo, laboriosam nisi reprehenderit tempora at laborum natus unde. Ut, exercitationem eum aperiam illo illum laudantium?",
+        "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut sequi, rem magnam nesciunt minima placeat...",
     },
   ];
 
@@ -113,27 +116,45 @@ const Hero = () => {
       clearTimeout(runNextAuto);
     };
   }, [slides.length]);
-
-  // Handle thumbnail click
-  const handleThumbnailClick = (index) => {
-    setActiveIndex(index);
-  };
+  useEffect(() => {
+    setProgress(((activeIndex + 1) / slides.length) * 100);
+  }, [activeIndex]);
 
   return (
-    <div ref={carouselRef} className="carousel">
+    <div dir="ltr" ref={carouselRef} className="carousel">
       <div className="list">
         {slides.map((item, index) => (
           <div
             key={item.id}
             className={`item ${index === activeIndex ? "active" : ""}`}
           >
-            <img src={item.image} alt={item.title} />
-            <div className="content">
+            {/* Animated Image */}
+            <AnimatePresence mode="wait">
+              {index === activeIndex && (
+                <motion.img
+                  key={item.image}
+                  src={item.image}
+                  alt={item.title}
+                  initial={{ opacity: 0, scale: 1.3 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.8 }}
+                  transition={{ duration: 0.8 }}
+                />
+              )}
+            </AnimatePresence>
+
+            {/* Animated Content */}
+            <motion.div
+              className="content"
+              initial={{ y: -50, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.6 }}
+            >
               <div className="author">{item.author}</div>
               <div className="title">{item.title}</div>
               <div className="topic">{item.topic}</div>
               <div className="des">{item.description}</div>
-            </div>
+            </motion.div>
           </div>
         ))}
       </div>
@@ -155,16 +176,34 @@ const Hero = () => {
         ))}
       </div>
 
-      <div className="arrows">
-        <button ref={prevRef} id="prev">
-          &#9664;
-        </button>
-        <button ref={nextRef} id="next">
-          &#9654;
-        </button>
-      </div>
+      <div className="arrows flex justify-between items-center w-full mt-4">
+        {/* Navigation Buttons */}
+        <div className="flex items-center gap-x-6">
+          <button ref={prevRef} id="prev">
+            <MdKeyboardArrowLeft size={26} />
+          </button>
+          <button ref={nextRef} id="next">
+            <MdKeyboardArrowRight size={26} />
+          </button>
+        </div>
 
-      <div className="time"></div>
+        {/* Progress Line with Progress Bar */}
+        <div className="relative flex-grow mx-6 h-2 bg-white/30 rounded overflow-hidden">
+          {/* Progress Bar */}
+          <div
+            className="absolute top-0 left-0 h-full transition-all duration-500 rounded"
+            style={{
+              width: `${progress}%`,
+              backgroundColor: `hsl(${progress}, 70%, 50%)`,
+            }}
+          ></div>
+        </div>
+
+        {/* Slide Counter */}
+        <div className="text-white text-4xl font-semibold min-w-[60px] text-center">
+          0{activeIndex + 1}
+        </div>
+      </div>
     </div>
   );
 };
