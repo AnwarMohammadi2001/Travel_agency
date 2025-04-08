@@ -5,7 +5,6 @@ import img1 from "../assets/image/img1.jpg";
 import img2 from "../assets/image/img2.jpg";
 import img3 from "../assets/image/img3.jpg";
 import img4 from "../assets/image/img4.jpg";
-import her5 from "../assets/image/img5.jpg";
 
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { MdKeyboardArrowLeft } from "react-icons/md";
@@ -20,7 +19,7 @@ const Hero = () => {
   const slides = [
     {
       id: 1,
-      image: her5,
+      image: img1,
       author: "LUNDEV",
       title: "DESIGN SLIDER",
       topic: "ANIMAL",
