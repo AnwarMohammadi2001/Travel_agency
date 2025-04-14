@@ -32,7 +32,9 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 w-full left-0 px-28 right-0 z-60 transition-all duration-300 ${scrolled}`}
+      className={`fixed top-0 w-full left-0 px-28 right-0 z-60 transition-all duration-300 ${
+        scrolled ? "bg-black/50 backdrop-blur-md" : "bg-transparent"
+      }`}
     >
       <div className="px-4 flex items-center justify-between py-3">
         {/* Logo and Brand Name */}

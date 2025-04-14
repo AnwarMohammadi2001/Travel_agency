@@ -33,7 +33,6 @@
 
 body {
   margin: 0;
-  background-color: oklch(0.987 0.022 95.277);
   /* font-family: Roboto; */
   font-size: 12px;
   scroll-behavior: smooth;
