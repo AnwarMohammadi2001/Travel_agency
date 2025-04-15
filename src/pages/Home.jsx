@@ -2,6 +2,7 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import PopulerDes from "../components/PopulerDes";
+import AboutSection from "../components/AboutSection";
 
 const Home = () => {
   return (
@@ -14,6 +15,8 @@ const Home = () => {
       <main className="">
         <Hero />
         <PopulerDes />
+        <AboutSection />
+
       </main>
     </div>
   );
