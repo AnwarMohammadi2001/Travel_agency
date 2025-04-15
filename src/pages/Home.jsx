@@ -4,6 +4,8 @@ import Hero from "../components/Hero";
 import PopulerDes from "../components/PopulerDes";
 import AboutSection from "../components/AboutSection";
 import WhyUs from "../components/WhyUs";
+import Testimonials from "../components/Testimonials";
+import Footer from "../components/Footer";
 
 const Home = () => {
   return (
@@ -18,7 +20,8 @@ const Home = () => {
         <PopulerDes />
         <AboutSection />
         <WhyUs />
-
+        <Testimonials />
+        <Footer />
       </main>
     </div>
   );
