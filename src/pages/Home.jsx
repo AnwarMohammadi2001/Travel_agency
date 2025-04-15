@@ -6,6 +6,7 @@ import AboutSection from "../components/AboutSection";
 import WhyUs from "../components/WhyUs";
 import Testimonials from "../components/Testimonials";
 import Footer from "../components/Footer";
+import YourPlace from "../components/YourPlace";
 
 const Home = () => {
   return (
@@ -19,6 +20,7 @@ const Home = () => {
         <Hero />
         <PopulerDes />
         <AboutSection />
+        <YourPlace />
         <WhyUs />
         <Testimonials />
         <Footer />

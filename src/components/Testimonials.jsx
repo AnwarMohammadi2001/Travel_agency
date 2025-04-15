@@ -84,7 +84,8 @@ const Testimonials = () => {
           swiper.navigation.init();
           swiper.navigation.update();
         }}
-        autoplay={{ delay: 5000 }}
+        autoplay={{ delay: 3000 }}
+        loop
         spaceBetween={100}
         slidesPerView={1}
         grabCursor={true}

@@ -1,24 +1,36 @@
 import React from "react";
-import { FaFacebook, FaTwitter, FaInstagram } from "react-icons/fa";
+import { FaFacebook, FaTwitter, FaInstagram, FaTiktok } from "react-icons/fa";
 import HeadFooter from "./HeadFooter";
+import { MdCall } from "react-icons/md";
+import { MdEmail } from "react-icons/md";
 
 const Footer = () => {
   return (
     <footer className="">
       <HeadFooter />
-      <div className="bg-gray-900 text-white py-12 px-6">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+      <div className="bg-[#001219] text-white py-12 ">
+        <div className="max-w-[78%] mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-8">
           {/* Logo and Info */}
           <div>
-            <h1 className="text-2xl font-bold text-red-500">Tamadon</h1>
-            <p className="mt-4 text-sm text-gray-300">
-              Tamadon is your go-to travel partner, offering unforgettable
-              journeys with trust and ease. Discover the world with us.
+            <img src="/logo.svg" alt="" />
+            <p className="mt-4 text-sm max-w-[300px] text-gray-300">
+              Your trusted partner for extraordinary travel experiences since
+              2015.
             </p>
-            <div className="flex gap-3 mt-4 text-red-400">
-              <FaFacebook className="cursor-pointer hover:text-white" />
-              <FaTwitter className="cursor-pointer hover:text-white" />
-              <FaInstagram className="cursor-pointer hover:text-white" />
+            <div className="flex gap-5 mt-4 text-primary transition-colors duration-500">
+              <FaFacebook
+                size={24}
+                className="cursor-pointer hover:text-white"
+              />
+              <FaTwitter
+                size={24}
+                className="cursor-pointer hover:text-white"
+              />
+              <FaInstagram
+                size={24}
+                className="cursor-pointer hover:text-white"
+              />
+              <FaTiktok size={24} className="cursor-pointer hover:text-white" />
             </div>
           </div>
 
@@ -59,6 +71,21 @@ const Footer = () => {
               </li>
             </ul>
           </div>
+          <div>
+            <h2 className="text-lg font-semibold mb-4">Contact</h2>
+            <ul className="space-y-2 text-sm text-gray-300">
+              <p>455 West Orchard Street Kings</p>
+              <p>Mountain, NC 280867</p>
+              <li className="flex items-center gap-2">
+                <MdCall size={20} className="text-primary" />
+                <a href="#">+088 (246) 642-27-10</a>
+              </li>
+              <li className="flex items-center gap-2">
+                <MdEmail size={20} className="text-primary" />
+                <a href="#">example@gmail.com</a>
+              </li>
+            </ul>
+          </div>
 
           {/* Newsletter */}
           <div>
@@ -70,11 +97,11 @@ const Footer = () => {
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="px-4 py-2 rounded-md text-gray-900 focus:outline-none"
+                className="px-4 py-2 rounded-md text-gray-900 border bg-gray-200 focus:outline-none"
               />
               <button
                 type="submit"
-                className="bg-red-500 hover:bg-red-600 text-white py-2 rounded-md text-sm"
+                className="bg-primary hover:bg-primary/90 cursor-pointer text-white py-2 rounded-md text-sm"
               >
                 Subscribe
               </button>
@@ -83,8 +110,11 @@ const Footer = () => {
         </div>
 
         {/* Bottom Line */}
-        <div className="mt-12 text-center text-gray-400 text-sm">
-          &copy; {new Date().getFullYear()} Tamadon. All rights reserved.
+        <div className="mt-12 text-center text-gray-400 border-t max-w-5xl mx-auto text-sm">
+          <p className="mt-5">
+            &copy; {new Date().getFullYear()} ADVENTURE AURA. All rights
+            reserved.
+          </p>
         </div>
       </div>
     </footer>
