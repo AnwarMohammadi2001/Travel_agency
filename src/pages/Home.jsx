@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import PopulerDes from "../components/PopulerDes";
 import AboutSection from "../components/AboutSection";
+import WhyUs from "../components/WhyUs";
 
 const Home = () => {
   return (
@@ -16,6 +17,7 @@ const Home = () => {
         <Hero />
         <PopulerDes />
         <AboutSection />
+        <WhyUs />
 
       </main>
     </div>
