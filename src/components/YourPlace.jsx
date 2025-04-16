@@ -45,7 +45,7 @@ const YourPlace = () => {
             className="relative rounded-[20%] overflow-hidden group h-[350px] sm:h-[500px] mt-10 w-full max-w-sm mx-auto md:mx-0"
           >
             <img
-              src="/src/assets/image/img4.jpg"
+              src="/image/img4.jpg"
               alt=""
               className="rounded-[20%] w-full h-full object-cover"
             />
@@ -77,7 +77,7 @@ const YourPlace = () => {
                 className="relative w-full max-w-sm h-[350px] sm:h-[400px] rounded-[20%] overflow-hidden cursor-pointer group"
               >
                 <img
-                  src={`/src/assets/image/img${index + 1}.jpg`}
+                  src={`/image/img${index + 1}.jpg`}
                   alt={name}
                   className="rounded-[20%] w-full h-full object-cover"
                 />

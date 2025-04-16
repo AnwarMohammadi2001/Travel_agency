@@ -1,5 +1,4 @@
 import React from "react";
-import img from "../assets/image/img4.jpg";
 import { IoIosAirplane } from "react-icons/io";
 import { FaBath } from "react-icons/fa6";
 const WhyUs = () => {
@@ -7,7 +6,7 @@ const WhyUs = () => {
     <div className="relative w-full h-screen md:h-[95vh] bg-black mt-10 mb-28">
       {/* Background Image */}
       <img
-        src={img} // Replace with your image path
+        src='/image/img4.jpg' // Replace with your image path
         alt="Hero Background"
         className="absolute inset-0 w-full h-full object-cover"
       />

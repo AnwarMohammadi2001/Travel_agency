@@ -1,5 +1,5 @@
 import React from "react";
-import img from "../assets/image/img4.jpg";
+
 import { IoArrowForwardCircleOutline } from "react-icons/io5";
 import { FaRegPlayCircle } from "react-icons/fa";
 import { motion } from "framer-motion";
@@ -10,7 +10,7 @@ const Hero = () => {
     <div className="relative w-full h-screen bg-black">
       {/* Background Image */}
       <img
-        src={img}
+        src="/image/img4.jpg" // Replace with your image path
         alt="Hero Background"
         className="absolute inset-0 w-full h-full object-cover"
       />
