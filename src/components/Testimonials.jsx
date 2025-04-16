@@ -53,7 +53,7 @@ const Testimonials = () => {
   }, []);
 
   return (
-    <div className="max-w-[60%] relative group py-14 mx-auto">
+    <div className="max-w-[90%] lg:max-w-[60%] relative group py-14 mx-auto">
       <div className="text-center flex  justify-center  space-y-3 mb-7">
         <h1 className="py-1 px-8 bg-red-200 text-lg text-red-600 uppercase rounded-full">
           TESTIMONIALS

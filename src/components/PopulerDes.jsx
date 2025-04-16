@@ -28,12 +28,12 @@ const PopulerDes = () => {
   ];
 
   return (
-    <div className="min-h-screen w-full py-28">
+    <div className="min-h-screen w-full px-8 md:px-0 py-28">
       <div className="flex flex-col items-center justify-center">
         <div className="py-1 px-8 bg-red-200 text-lg text-red-600 uppercase rounded-full">
           popular destinations
         </div>
-        <div className="py-1 px-8 font-Roboto mt-5 text-4xl tracking-wider font-bold">
+        <div className="py-1 px-8 font-Roboto mt-5 text-2xl md:text-4xl tracking-wider font-bold text-black dark:text-gray-200 transition-colors duration-500">
           Handpicked Packages
         </div>
       </div>
@@ -44,7 +44,7 @@ const PopulerDes = () => {
           initial="hidden"
           whileInView="show"
           viewport={{ once: false, amount: 0.2 }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-28 md:gap-8"
         >
           {items.map((item, index) => (
             <motion.div
@@ -53,7 +53,7 @@ const PopulerDes = () => {
               whileInView="show"
               initial="hidden"
               viewport={{ once: false, amount: 0.2 }}
-              className="relative group cursor-pointer h-[550px]"
+              className="relative group cursor-pointer h-[400px] md:h-[550px]"
             >
               <motion.img
                 src={item.image}
@@ -62,13 +62,13 @@ const PopulerDes = () => {
                 variants={fadeIn("up", index * 0.3)} // optional double fade
               />
 
-              <div className="absolute -bottom-36 z-20 left-1/2 -translate-x-1/2 flex justify-center items-center flex-col rounded-full h-56 w-56 bg-white">
+              <div className="absolute -bottom-20 md:-bottom-36 z-20 left-1/2 -translate-x-1/2 flex justify-center items-center flex-col rounded-full w-64 md:h-56 md:w-56 bg-white">
                 <img
                   src="/pop/star.jpg"
                   alt=""
-                  className="mix-blend-multiply h-10"
+                  className="mix-blend-multiply mt-3 md:mt-1 h-10"
                 />
-                <p className="text-red-600 bg-red-200 py-1 mt-6 rounded-full px-5 text-lg">
+                <p className="text-red-600 bg-red-200 py-1 mt-4 md:mt-6 rounded-full px-5 text-lg">
                   {item.name}
                 </p>
                 <h3 className="text-2xl mt-2 font-bold font-Roboto">

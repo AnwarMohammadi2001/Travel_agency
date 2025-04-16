@@ -1,41 +1,38 @@
 import React from "react";
 import { FaFacebook, FaTwitter, FaInstagram, FaTiktok } from "react-icons/fa";
 import HeadFooter from "./HeadFooter";
-import { MdCall } from "react-icons/md";
-import { MdEmail } from "react-icons/md";
+import { MdCall, MdEmail } from "react-icons/md";
 
 const Footer = () => {
   return (
-    <footer className="">
+    <footer>
       <HeadFooter />
-      <div className="bg-[#001219] text-white py-12 ">
-        <div className="max-w-[78%] mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-8">
-          {/* Logo and Info */}
-          <div>
-            <img src="/logo.svg" alt="" />
-            <p className="mt-4 text-sm max-w-[300px] text-gray-300">
+
+      {/* Footer Main Content */}
+      <div className="bg-[#001219] text-white py-12 px-5">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-10">
+          {/* Logo and Socials */}
+          <div className="">
+            <img src="/logo.svg" alt="Logo" className="w-36 md:w-52 " />
+            <p className="mt-4 text-sm text-gray-300 max-w-xs">
               Your trusted partner for extraordinary travel experiences since
               2015.
             </p>
-            <div className="flex gap-5 mt-4 text-primary transition-colors duration-500">
-              <FaFacebook
-                size={24}
-                className="cursor-pointer hover:text-white"
-              />
-              <FaTwitter
-                size={24}
-                className="cursor-pointer hover:text-white"
-              />
-              <FaInstagram
-                size={24}
-                className="cursor-pointer hover:text-white"
-              />
-              <FaTiktok size={24} className="cursor-pointer hover:text-white" />
+            <div className="flex gap-4 mt-4 text-primary">
+              {[FaFacebook, FaTwitter, FaInstagram, FaTiktok].map(
+                (Icon, index) => (
+                  <Icon
+                    key={index}
+                    size={22}
+                    className="cursor-pointer hover:text-white transition-colors duration-300"
+                  />
+                )
+              )}
             </div>
           </div>
 
-          {/* Quick Links 1 */}
-          <div>
+          {/* Quick Links */}
+          <div className="">
             <h2 className="text-lg font-semibold mb-4">Quick Links</h2>
             <ul className="space-y-2 text-sm text-gray-300">
               <li>
@@ -53,7 +50,7 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Quick Links 2 */}
+          {/* Support Links */}
           <div>
             <h2 className="text-lg font-semibold mb-4">Support</h2>
             <ul className="space-y-2 text-sm text-gray-300">
@@ -71,20 +68,22 @@ const Footer = () => {
               </li>
             </ul>
           </div>
+
+          {/* Contact Info */}
           <div>
             <h2 className="text-lg font-semibold mb-4">Contact</h2>
-            <ul className="space-y-2 text-sm text-gray-300">
-              <p>455 West Orchard Street Kings</p>
-              <p>Mountain, NC 280867</p>
-              <li className="flex items-center gap-2">
-                <MdCall size={20} className="text-primary" />
+            <div className="space-y-2 text-sm text-gray-300">
+              <p>455 West Orchard Street</p>
+              <p>Kings Mountain, NC 280867</p>
+              <div className="flex items-center gap-2 mt-2">
+                <MdCall className="text-primary" />
                 <a href="#">+088 (246) 642-27-10</a>
-              </li>
-              <li className="flex items-center gap-2">
-                <MdEmail size={20} className="text-primary" />
+              </div>
+              <div className="flex items-center gap-2">
+                <MdEmail className="text-primary" />
                 <a href="#">example@gmail.com</a>
-              </li>
-            </ul>
+              </div>
+            </div>
           </div>
 
           {/* Newsletter */}
@@ -93,15 +92,15 @@ const Footer = () => {
             <p className="text-sm text-gray-300 mb-3">
               Subscribe to our newsletter and stay updated.
             </p>
-            <form className="flex flex-col gap-2">
+            <form className="flex flex-col sm:flex-row sm:items-center gap-2">
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="px-4 py-2 rounded-md text-gray-900 border bg-gray-200 focus:outline-none"
+                className="flex-1 px-4 py-2 rounded-md text-gray-900 border bg-gray-200 focus:outline-none"
               />
               <button
                 type="submit"
-                className="bg-primary hover:bg-primary/90 cursor-pointer text-white py-2 rounded-md text-sm"
+                className="bg-primary hover:bg-primary/90 text-white py-2 px-4 rounded-md text-sm"
               >
                 Subscribe
               </button>
@@ -110,8 +109,8 @@ const Footer = () => {
         </div>
 
         {/* Bottom Line */}
-        <div className="mt-12 text-center text-gray-400 border-t max-w-5xl mx-auto text-sm">
-          <p className="mt-5">
+        <div className="mt-12 border-t border-gray-700 pt-6 text-center text-sm text-gray-400 max-w-4xl mx-auto">
+          <p>
             &copy; {new Date().getFullYear()} ADVENTURE AURA. All rights
             reserved.
           </p>

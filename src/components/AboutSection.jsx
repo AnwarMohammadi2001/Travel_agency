@@ -20,15 +20,15 @@ const AboutSection = () => {
   ];
 
   return (
-    <div className="min-h-screen w-full bg-red-100/50 mt-10 py-28">
+    <div className="min-h-screen w-full bg-red-100/50 mt-10 py-16 md:py-28">
       <div className="flex flex-col items-center justify-center">
         <div className="py-1 px-8 text-center bg-white text-lg text-red-600 uppercase rounded-full">
           about us
         </div>
       </div>
       <div className=" max-w-7xl mx-auto  grid grid-cols-1 md:grid-cols-2 gap-8 ">
-        <div className="flex justify-center">
-          <img src="/pop/image-6.png" alt="" />
+        <div className="flex justify-center mt-5 md:mt-0">
+          <img src="/pop/image-6.png" alt="" className="h-[450px] md:h-auto" />
         </div>
         <div className="p-10 flex flex-col  justify-center">
           <h2 className="text-lg md:text-2xl lg:text-5xl font-bold font-Roboto">
@@ -42,7 +42,7 @@ const AboutSection = () => {
             exceptional travel experiences tailored to your unique desires and
             needs.
           </p>
-          <div className="py-4 grid grid-cols-2 gap-10">
+          <div className="py-4 md:grid grid-cols-2 gap-10">
             <div className="relative w-[250px] h-[150px]  rounded-xl overflow-hidden cursor-pointer group">
               <img
                 src="/pop/video.jpg"
@@ -53,7 +53,7 @@ const AboutSection = () => {
                 <FaRegPlayCircle size={34} className="text-white" />
               </div>
             </div>
-            <div className=" space-y-5">
+            <div className=" mt-5 md:mt-0 space-y-5">
               <ul className="space-y-2">
                 {[
                   "Budget-Friendly",

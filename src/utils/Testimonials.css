@@ -1,10 +1,10 @@
-.custome-pagination {
+.custom-pagination {
   position: absolute;
-  bottom: -30px; /* Adjust the vertical position as needed */
-  left: 50%; /* Center horizontally */
-  right: 50%; /* Center horizontally */
-  transform: translateX(-50%, -50%); /* Center horizontally */
-  gap: 5px; /* Space between bullets */
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 5px;
 }
 
 .custom-bullet {
